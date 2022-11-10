@@ -12,7 +12,6 @@
 .Auth-form {
   width: 420px;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
-  padding-top: 30px;
   padding-bottom: 20px;
   border-radius: 8px;
   background-color: white;
@@ -39,3 +38,18 @@ label {
 .mycolin{
     color:#5624d0;
 }
+
+.logoimage{
+
+width: 200px;
+height :100px;
+text-align: center;
+
+
+
+}
+
+.form-control-error:focus {
+          border-color: red;
+         box-shadow: 0 0 0 0.1rem red; 
+    } 

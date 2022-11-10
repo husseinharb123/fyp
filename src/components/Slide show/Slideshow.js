@@ -1,48 +1,72 @@
 import React from 'react'
-import companyLogo from '../images/slide3.jpg';
+import buildimage from './slide1.jpg';
+import shopimage from "./slide2.jpg";
 import './Slideshow.scoped.css'
 
 
 
 export default function Slideshow() {
   return (
-<>
-<div id="carouselExampleDark"  className="carousel carousel-dark slide" data-bs-ride="carousel">
-  <div  className="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0"  className="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-  </div>
-  <div className="carousel-inner">
-    
-    <div className="carousel-item active" data-bs-interval="2000">
-      <img src={companyLogo}  className="d-block imag" alt="..." />
-      <div  className="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
+    <>
+      <div
+        id="carouselExampleDark"
+        className="carousel carousel-dark slide"
+        data-bs-ride="carousel"
+      >
+        <div className="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleDark"
+            data-bs-slide-to="0"
+            className="active"
+            aria-current="true"
+            aria-label="Slide 1"
+          />
+          <button
+            type="button"
+            data-bs-target="#carouselExampleDark"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+          />
+        </div>
+        <div className="carousel-inner">
+          <div className="carousel-item" data-bs-interval="5000">
+            <img src={buildimage} className="d-block imag" alt="..." />
+            <div className="carousel-caption d-none d-md-block ">
+              <span className="btn btn-light border border-dark"> build</span>
+              <h2 className="text-dark">Build you own store pag</h2>
+            </div>
+          </div>
+
+          <div className="carousel-item active" data-bs-interval="5000">
+            <img src={shopimage} className="d-block imag" alt="..." />
+            <div className="carousel-caption d-none d-md-block">
+              <span className="btn btn-dark"> shop now</span>
+              <h2 className="text-white">
+                Start shopping by exploring shops products
+              </h2>
+            </div>
+          </div>
+        </div>
+        <button
+          className="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleDark"
+          data-bs-slide="prev"
+        >
+          <span className="carousel-control-prev-icon" aria-hidden="true" />
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button
+          className="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleDark"
+          data-bs-slide="next"
+        >
+          <span className="carousel-control-next-icon" aria-hidden="true" />
+          <span className="visually-hidden">Next</span>
+        </button>
       </div>
-    </div>
-    <div  className="carousel-item"data-bs-interval="1000">
-      <img src={companyLogo}  className="d-block imag" alt="..."/>
-      <div  className="carousel-caption d-none d-md-block btn">
-        <button> Build</button>
-        <p>Build you own store page</p>
-      </div>
-    </div>
-  </div>
-  <button  className="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-    <span  className="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span  className="visually-hidden">Previous</span>
-  </button>
-  <button  className="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-    <span  className="carousel-control-next-icon" aria-hidden="true"></span>
-    <span  className="visually-hidden">Next</span>
-  </button>
-
-
-    </div>
-
-
-
-</>
-  )
+    </>
+  );
 }

@@ -1,23 +1,41 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import StoreLayout from "./pages layout/StoreLayout.js";
-import Productview from "./pages layout/productview.js";
-import HomeLayout from './pages layout/HomeLayout'
-import Authpage from './pages layout/Authpage'
-import Testing2 from "./components/Detailproduct/testing2.js";
-import Testing from './components/Searchresult/testing'
-import CartPage from "./components/Cartpage/CartPage.js";
-import OrderPage from './components/orders/OrderPage'
-import Admin from './components/Admin page/Admin'
-import Login from "./src/pages/login/Login.jsx";
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import HomeLayout from './pages/HomeLayout'
+import SignIn from './components/sign in/Signin'
+import SignUp from './components/sign up/Signup'
+import CartPage from './pages/CartPage/CartPage'
+import OrderandWishPage from "./pages/OrderandWishPage";
+import AdminPageLayout from './Admin/AdminPageLayout/AdminPageLayout'
+import { ScrollToTop } from './components/ScrollToTop/ScrollToTop'
+import Axios from 'axios'
+import {AuthcontextProvider} from './Contexts/AuthcontextProvider'
+Axios.defaults.baseURL = 'http://localhost:8070'
+
 function Main() {
+
   return (
-    <BrowserRouter>
-    <Login/>
-    </BrowserRouter>
+
+    <>
+
+      <BrowserRouter>
+
+        <Routes>
+          <Route path="/" element={<HomeLayout />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path='/cart' element={<CartPage />} />
+          <Route path='/OrderWish' element={<OrderandWishPage />} />
+          <Route path='/admin' element={<AdminPageLayout />} />
+          <Route path='*' element={<p>not found</p>} />
+        </Routes>
+      </BrowserRouter>
+
+    </>
+
   );
 }
 
@@ -27,9 +45,22 @@ function Main() {
 
 
 
+
+
+
+
+
+
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+
+
+
+
+
+  <AuthcontextProvider>
     <Main />
-  </React.StrictMode>
+    <ScrollToTop />
+  </AuthcontextProvider>
 );
