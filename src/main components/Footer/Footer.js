@@ -44,17 +44,13 @@ export default function Footer() {
             <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 mt-3">
               <h6 className="text-uppercase fw-bold mb-4" >Contact</h6>
               <p>
-                <i className="fas fa-home me-3 text-secondary"></i> New York, N 10012, US</p>
+                <i className="fas fa-home me-3 text-secondary"></i>Lebanon,Beirut</p>
               <p>
-                <i className="fas fa-envelope me-3 text-secondary"></i>
-                info@example.com
-              </p>
+                <i className="fas fa-envelope me-3 text-secondary"></i>hzh09@mail.aub.edu</p>
               <p>
-                <i className="fas fa-phone me-3 text-secondary"></i> + 01 234 567 88
+                <i className="fas fa-phone me-3 text-secondary"></i>+961 81267980
               </p>
-              <p>
-                <i className="fas fa-print me-3 text-secondary"></i> + 01 234 567 89
-              </p>
+
             </div>
           </div>
         </div>

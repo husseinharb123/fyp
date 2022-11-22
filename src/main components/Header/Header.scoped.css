@@ -43,49 +43,10 @@ color:#5624d0;
 
 
 }
-    .badge-pill:after{
-        content:attr(value);
-        font-size:12px;
-        color: #fff;
-        background: #5624d0;
-        border-radius:50%;
-        padding: 0 5px;
-        position:relative;
-        left:-8px;
-        top:-10px;
-        opacity:0.9;
-    }
 
 
-.cart{
-    display: flex;
-    flex-direction:column;
-    vertical-align: middle;
-}
-.cart span{
-    margin-left: 4px;
-    font-size:x-small
-}
 
-.login{
-color: white;
-background-color: black;
-font-size: small;
-padding: 4px 10px ;
-border: 1px solid white;
-display: flex;
-align-items: center;
- text-decoration: none;
-}
-.signin p{
-    text-align:center;
-    margin-top: 0;
-    margin-bottom: 0;
-}
-.signin{
-    margin-left:5px;
 
-}
 
 .orders{
 font-size: small;
@@ -95,6 +56,7 @@ padding: 4px 9px ;
 display: flex;
 align-items: center;
 }
+
 .signin p{
     text-align:center;
     margin-top: 0;

@@ -9,31 +9,49 @@ import SignIn from './components/sign in/Signin'
 import SignUp from './components/sign up/Signup'
 import CartPage from './pages/CartPage/CartPage'
 import OrderandWishPage from "./pages/OrderandWishPage";
-import AdminPageLayout from './Admin/AdminPageLayout/AdminPageLayout'
 import { ScrollToTop } from './components/ScrollToTop/ScrollToTop'
 import Axios from 'axios'
-import {AuthcontextProvider} from './Contexts/AuthcontextProvider'
+import { AuthcontextProvider, AuthContext, AuthDispatchContext } from './Contexts/AuthcontextProvider'
+import { ProductDetailContextProvider } from "./Contexts/ProductDetailContextProvider";
+import ProductDetailPage from "./pages/ProductDetailPage";
+import { useContext } from "react";
+import NotFoundPage from "./pages/NotFoundPage";
+import SearchPage from './pages/SearchPage/SearchPage'
 Axios.defaults.baseURL = 'http://localhost:8070'
 
 function Main() {
-
+  const state = useContext(AuthContext)
   return (
 
     <>
 
       <BrowserRouter>
-
         <Routes>
-          <Route path="/" element={<HomeLayout />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path='/cart' element={<CartPage />} />
-          <Route path='/OrderWish' element={<OrderandWishPage />} />
-          <Route path='/admin' element={<AdminPageLayout />} />
-          <Route path='*' element={<p>not found</p>} />
+          {state.isloggedin &&
+            <>
+              <Route path="/" element={<HomeLayout />} />
+              <Route path="/signin" element={<HomeLayout />} />
+              <Route path="/signup" element={<HomeLayout />} />
+              <Route path='/cart' element={<CartPage />} />
+              <Route path='/OrderWish' element={<OrderandWishPage />} />
+            </>
+
+          }
+
+          {!state.isloggedin &&
+            <>
+              <Route path="/" element={<HomeLayout />} />
+              <Route path="/signin" element={<SignIn />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path='/cart' element={<SignIn />} />
+              <Route path='/OrderWish' element={<SignIn />} />
+            </>
+
+          }
+          <Route path="/productdetail/:id" element={<ProductDetailPage />}></Route>
+          <Route path='*' element={<SearchPage />} />
         </Routes>
       </BrowserRouter>
-
     </>
 
   );
@@ -55,12 +73,10 @@ function Main() {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 
-
-
-
-
   <AuthcontextProvider>
+    <ProductDetailContextProvider>
     <Main />
     <ScrollToTop />
+    </ProductDetailContextProvider>
   </AuthcontextProvider>
 );

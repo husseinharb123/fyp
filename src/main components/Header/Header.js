@@ -2,15 +2,10 @@ import React from 'react'
 import './Header.scoped.css'
 import { Link } from 'react-router-dom'
 import image from './logo.JPG'
-import { useContext } from 'react'
-import { AuthContext, AuthDispatchContext } from '../../Contexts/AuthcontextProvider'
-import Signin from '../../components/sign in/Signin'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import HeaderSignButton from '../../components/HeaderSignButton/HeaderSignButton'
+import HeaderCart from '../../components/HeaderCart/HeaderCart'
 
 export default function Header() {
-
-  const state = useContext(AuthContext)
-  const dispatch = useContext(AuthDispatchContext)
 
   return (
     <>
@@ -31,18 +26,16 @@ export default function Header() {
             <input type="text" name="" placeholder="search for anything" />
           </div>
           <div className="department nav-item d-none d-md-block ">
-            <Link to={`/${state.isloggedin ? 'chatroom' : 'Signin'}`} className="header-links">ChatRoom</Link>
+            <Link to='/chatroom' className="header-links">ChatRoom</Link>
           </div>
           <div className="department nav-item  d-none d-md-block " >
             <Link to="/admin" className="header-links">BuildStore</Link>
           </div>
 
-          <Link to={`/${state.isloggedin ? 'cart' : 'Signin'}`} style={{ textDecoration: "none", color: 'black' }}><div className="cart nav-item">
-            <i className="fa fa-lg  badge-pill" value="0" style={{ color: "black" }}>&#xf07a;</i>
-            <span>0.00$</span>
-          </div>
-          </Link>
-          <Link to={`/${state.isloggedin ? 'OrderWish' : 'Signin'}`} style={{ textDecoration: "none" }}> <div className="orders nav-item d-none d-md-flex  " >
+        < HeaderCart/>
+
+
+          <Link to='/OrderWish' style={{ textDecoration: "none" }}> <div className="orders nav-item d-none d-md-flex  " >
             <svg
               className="svg-icon mychart"
               style={{ width: "2em", height: "2em", verticalAlign: "middle", fill: "currentColor", overflow: "hidden", }}
@@ -60,33 +53,7 @@ export default function Header() {
           </Link>
 
 
-          <div className="dropdown">
-            <Link to='/signin' style={{ textDecoration: "none" }} role="button" data-bs-toggle="dropdown" aria-expanded="false" ><div className="login nav-item d-none d-md-flex dropdown-toggle"  >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="2em"
-                height="2em"
-                fill="currentColor"
-                className="bi bi-person"
-                viewBox="0 0 16 16"
-              >
-                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
-              </svg>
-              <div className="signin nav-item" >
-                <p>Hi,{state.isloggedin ? state.FirstName : 'Sign in'}</p>
-                <p>Account</p>
-              </div>
-            </div>
-            </Link>
-            <ul className="dropdown-menu dropdown-menu-end dropdown-menu-dark">
-              <li><Link className="dropdown-item small" to="/" ><i className="bi bi-house"></i>   Home</Link></li>
-              {state.isloggedin ? <li><Link className="dropdown-item small" to="/" onClick={() => { dispatch({ type: "logout" }) }}><i className="bi bi-box-arrow-right "></i>   Logout</Link></li> : <li><Link className="dropdown-item small" to="/signin" onClick={() => { dispatch({ type: "logout" }) }}><i className="bi bi-person-circle"></i>   SignIn</Link></li>}
-              <li><Link className="dropdown-item small" to="/signup" ><i className="bi bi-person-plus"></i>   sign up</Link></li>
-            </ul>
-          </div>
-
-
-
+          <HeaderSignButton/>
 
         </div>
       </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import './Productl1.scoped.css'
 import  Featureproduct from '../../components/FeaturedProduct/FeaturedProduct'
-export default function Category() {
+export default function FeaturedProducts() {
   return (
 
 <>

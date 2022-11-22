@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { useImmerReducer } from 'use-immer'
 import './signup.scoped.css'
 import image from './logo.JPG'
-import axios, { Axios } from 'axios'
+import axios from 'axios'
 import { useContext } from 'react'
 import { AuthContext, AuthDispatchContext } from '../../Contexts/AuthcontextProvider'
 

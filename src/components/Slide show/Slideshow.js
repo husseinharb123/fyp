@@ -34,7 +34,7 @@ export default function Slideshow() {
             <img src={buildimage} className="d-block imag" alt="..." />
             <div className="carousel-caption d-none d-md-block ">
               <span className="btn btn-light border border-dark"> build</span>
-              <h2 className="text-dark">Build you own store pag</h2>
+              <h2 className="text-dark">Build You Own Store Page</h2>
             </div>
           </div>
 
@@ -43,7 +43,7 @@ export default function Slideshow() {
             <div className="carousel-caption d-none d-md-block">
               <span className="btn btn-dark"> shop now</span>
               <h2 className="text-white">
-                Start shopping by exploring shops products
+                Start Shopping By Exploring Shops Products
               </h2>
             </div>
           </div>

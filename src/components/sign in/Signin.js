@@ -7,7 +7,7 @@ import image from './logo.JPG'
 import { useImmerReducer } from 'use-immer'
 import { AuthContext, AuthDispatchContext } from '../../Contexts/AuthcontextProvider'
 
-import axios, { Axios } from 'axios'
+import axios from 'axios'
 
 export default function Signin() {
   const state1 = useContext(AuthContext)
@@ -16,7 +16,6 @@ export default function Signin() {
 
   const navigate = useNavigate();
   const initialState = {
-
     Email: {
       value: '',
       hasErrors: false,
@@ -26,7 +25,8 @@ export default function Signin() {
       value: ''
     },
     submitCount: 0,
-    submitError: false
+    submitError: false,
+    submiterrormessage :''
   }
 
   function ourReducer(draft, action) {
@@ -50,20 +50,29 @@ export default function Signin() {
 
       case 'SubmitForm':
         draft.submitError = false
-        if (!draft.Email.hasErrors && draft.Email.value && draft.Password.value) 
-        {
-          console.log('TEST');
-          draft.submitCount++;
-        }
-        else {
-
+        if (!draft.Email.value){
           draft.submitError = true;
+          draft.submiterrormessage = 'you are  missing email'
+        }
+        else if (!draft.Password.value && !draft.Email.hasErrors)
+        {
+          draft.submitError = true;
+          draft.submiterrormessage = 'you are  missing password'
+        }
+        else if (draft.Email.hasErrors){
+          draft.submitError = true;
+          draft.submiterrormessage = 'write the email properly'
+        }
+        else if  (!draft.Email.hasErrors) 
+        {
+          draft.submitCount++;
         }
         return
       case 'submiterror':
-
-        if (!action.value) { draft.submitError = true }
-
+        if (!action.value) { 
+          draft.submitError = true 
+          draft.submiterrormessage = 'invalid email or password'
+        }
         return
       default:
         break;
@@ -96,10 +105,6 @@ export default function Signin() {
         dispatch1({ type:"login",value:response.data.userinfo})
         navigate('/')
       }
-      else{
-
-      }
-
     }
     fetchdata()
   }
@@ -145,7 +150,7 @@ e.preventDefault();
               <button type="submit" className={`btn ${state.submitError ? 'btn-danger' : 'btn-dark'}`} onClick={handleSubmit}>
                 Submit
               </button>
-              <div className='text-center'> {state.submitError ? <span className='text-danger small'>some thing wrong happened</span> : <span className='m-1'> </span>} </div>
+              <div className='text-center'> {state.submitError ? <span className='text-danger small'>{state.submiterrormessage}</span> : <span className='m-1'> </span>} </div>
             </div>
             <p className=" text-center mt-2">
               have not  account <Link to="/signup" className='mycolin'>signup</Link>
