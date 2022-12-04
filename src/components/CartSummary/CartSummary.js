@@ -11,7 +11,7 @@ export default function CartSummary() {
               <div className="bg-light p-30 mb-5">
                   <div className="border-bottom pb-2">
 
-                      <select class="form-select btn-secondary mb-30" aria-label="Default select example" >
+                      <select className="form-select btn-secondary mb-30 rounded" aria-label="Default select example" >
                           <option selected>Select the store</option>
                           <option value="1">One</option>
                           <option value="2">Two</option>
@@ -33,7 +33,7 @@ export default function CartSummary() {
                           <h5>Total</h5>
                           <h5>$160</h5>
                       </div>
-                      <button className="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
+                      <button className="btn btn-block btn-dark font-weight-bold my-3 py-3 rounded">Proceed To Checkout</button>
                   </div>
               </div>
           </div>

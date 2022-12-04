@@ -101,7 +101,8 @@ export default function Signup() {
           draft.Email.hasErrors = true;
           draft.Email.message = 'ex: something@someserver.something'
         }
-        if (!draft.Email.hasErrors) { draft.Email.isUnique = true ;draft.Email.CheckCount++ };
+        if (!draft.Email.hasErrors) 
+        { draft.Email.isUnique = true ;draft.Email.CheckCount++ };
 
 
         return

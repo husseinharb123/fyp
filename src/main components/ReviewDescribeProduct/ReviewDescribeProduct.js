@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ReviewDescribeProduct.scoped.css";
 import UserReview from "../../components/UserReview/UserReview";
 import LeaveReview from "../../components/LeaveReview/LeaveReview";
 import { ProductDetailContext } from "../../Contexts/ProductDetailContextProvider";
 import { useContext, useEffect } from "react";
-import { useImmer } from "use-immer";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 export default function ReviewDescribeProduct() {
@@ -15,21 +14,19 @@ export default function ReviewDescribeProduct() {
     isthere: false
   }
 
-  const [usersstate, updateusersstate] = useImmer(initialstate)
+  const [usersstate, updateusersstate] = useState(initialstate)
 
   const state = useContext(ProductDetailContext)
 
   useEffect(() => {
-    updateusersstate(draft=>{draft.isthere = false})
+    updateusersstate(previous =>({...previous ,isthere:false}))
 
-    async function fetchdata(){
+    async function fetchdata() {
       const url = `/usersreview/${productid}`
-      const respond = axios.get(url)
-      if (respond.data.responseSuccess){
-        
-        updateusersstate((draft)=>{return (draft.isthere=true,draft.listofuserreview=respond.data.result)})
+      const response = await axios.get(url)
+      if (response.data.responseSuccess) {
+        updateusersstate(previous => ({ ...previous, isthere: true ,listofuserreview : response.data.result }))
       }
-      console.log(respond.data.responseSuccess); 
     }
     fetchdata()
 
@@ -49,17 +46,15 @@ export default function ReviewDescribeProduct() {
 
                 <div className='col-md-6 columm'>
                   <div className="nav nav-tabs mb-4">Reviews({state.reviews})</div>
-                  {usersstate.isthere 
-                  ? 
-                  <>
-                    <UserReview name={'hussein harb'} review={'tggdsgvvvvvvvvvvvvvvvvvvvvv vvvvvvvvvvvvvvvvv vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv vvvvvvvvvdgdg'} />
-                    <UserReview name={'hussein harb'} review={'tggdsgdgdg'} />
-                      <UserReview name={'hussein harb'} review={'tggdsgdgdg'} />
-                      <UserReview name={'hussein harb'} review={'tggdsgdgdg'} />
+                  {usersstate.isthere
+                    ?
+                    <>
+                      {usersstate.listofuserreview.map(userreview => { return <UserReview name={userreview.username} rating={userreview.rating} review={userreview.review} /> })}
                     </>
-                    
-                  : 
-                     <div className="text-center" >   <strong>No comments yet</strong>  </div>}
+
+                    :
+                    <div className="text-center" >   <strong>No comments yet</strong>  </div>
+                    }
 
                 </div>
               </div>

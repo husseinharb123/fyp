@@ -9,15 +9,15 @@ import Categories from '../main components/Categories/Categories.js';
 
 export default function HomeLayout() {
 
-
   
   return (
     <>
-      <Header />
+      <div>      <Header />
       <Slideshow />
       <Categories />
       <Services />
-      <Footer />
+      <Footer /></div>
+
     </>
   );
 }

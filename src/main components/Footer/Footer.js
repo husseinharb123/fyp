@@ -29,7 +29,7 @@ export default function Footer() {
             <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 mt-3">
               <h6 className="text-uppercase fw-bold mb-4">Useful links</h6>
               <p>
-                <Link to="#!" className="text-reset" id="test">Pricing</Link>
+                <Link to="#!" className="text-reset" id="test"></Link>
               </p>
               <p>
                 <Link to="#!" className="text-reset">Settings</Link>

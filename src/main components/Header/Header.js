@@ -22,14 +22,14 @@ export default function Header() {
           </div>
 
           <div className="searchbar nav-item ">
-            <Link to=""><i className="fa fa-search" aria-hidden="true"></i></Link>
+            <Link to="/search"><i className="fa fa-search" aria-hidden="true"></i></Link>
             <input type="text" name="" placeholder="search for anything" />
           </div>
           <div className="department nav-item d-none d-md-block ">
             <Link to='/chatroom' className="header-links">ChatRoom</Link>
           </div>
           <div className="department nav-item  d-none d-md-block " >
-            <Link to="/admin" className="header-links">BuildStore</Link>
+            <Link to="/buildstore" className="header-links">BuildStore</Link>
           </div>
 
         < HeaderCart/>

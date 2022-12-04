@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import buildimage from './slide1.jpg';
 import shopimage from "./slide2.jpg";
 import './Slideshow.scoped.css'
@@ -6,6 +7,7 @@ import './Slideshow.scoped.css'
 
 
 export default function Slideshow() {
+  const nav = useNavigate()
   return (
     <>
       <div
@@ -33,7 +35,7 @@ export default function Slideshow() {
           <div className="carousel-item" data-bs-interval="5000">
             <img src={buildimage} className="d-block imag" alt="..." />
             <div className="carousel-caption d-none d-md-block ">
-              <span className="btn btn-light border border-dark"> build</span>
+              <span className="btn btn-light border border-dark" onClick={()=>{nav('buildstore')}}> build</span>
               <h2 className="text-dark">Build You Own Store Page</h2>
             </div>
           </div>

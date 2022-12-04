@@ -3,16 +3,22 @@ import './ReviewDescribeProduct.scoped.css'
 import { useImmerReducer } from 'use-immer'
 import { AuthContext } from '../../Contexts/AuthcontextProvider'
 import { useContext } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
+import StarRating from '../Starrating/StarRating'
 
 export default function LeaveReview() {
+    
     let parms = useParams();
     let productid = parms.id
     const authstate = useContext(AuthContext)
+    const nav = useNavigate()
     const initialState= {
         review:{
             value:'',
+        },
+        rating:{
+        value:0
         },
         submitcount:0,
         submitmessage:'fill all the required fields',
@@ -24,6 +30,10 @@ export default function LeaveReview() {
     }
     function OurReducer(draft,action){
         switch (action.type) {
+
+            case 'fetchrating':
+                draft.rating.value = action.value
+                break;
             case 'handlesubmit':
                 draft.submiterror = false;
                 draft.submitdone = false;
@@ -57,7 +67,13 @@ export default function LeaveReview() {
 
     function handleclick(e){
         e.preventDefault();
-        dispatch({ type:'handlesubmit'})
+        if (authstate.isloggedin){
+            dispatch({ type:'handlesubmit'})
+        }
+        else{
+            nav('/signin')
+        }
+        
         
 
     }
@@ -65,7 +81,7 @@ export default function LeaveReview() {
         async function fetchdata(){
         if (state.submitcount) {    
             const url = "/leavereview"
-            const body = { review: state.review.value, productid: productid, userid: authstate._id, rating: 1 }
+            const body = { review: state.review.value, productid: productid, userid: authstate._id, rating: state.rating.value, username: authstate.FirstName + " " + authstate.LastName, }
             const response = await axios.post(url,body)
             if (response.data.responseSuccess){
                 dispatch({ type:'submitsucess'})
@@ -86,13 +102,7 @@ export default function LeaveReview() {
               <h4 className="mb-4">Leave a review</h4>
               <div className="d-flex my-3">
                   <p className="mb-0 mr-2">Your Rating <span style={{ color: 'red' }}>*</span> :</p>
-                  <div className="text-primary">
-                      <i className="far fa-star" />
-                      <i className="far fa-star" />
-                      <i className="far fa-star" />
-                      <i className="far fa-star" />
-                      <i className="far fa-star" />
-                  </div>
+                  <StarRating  allowclick={true} dispatchrating={dispatch}/>
               </div>
               <div>
                   <div className="form-group">

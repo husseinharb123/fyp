@@ -16,7 +16,7 @@ export default function OrderandWish() {
                             <Link className="nav-item nav-link text-dark font-weight-bold" data-toggle="tab" to="#tab-pane-3">Wishlist</Link>
                             <Link className="nav-item nav-link text-dark font-weight-bold" data-toggle="tab" to="#tab-pane-3">Old Orders</Link>
 
-                            <select class="btn-secondary " aria-label="Default select example" >
+                            <select className="btn " aria-label="Default select example" >
                                 <option selected>Select the store</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>

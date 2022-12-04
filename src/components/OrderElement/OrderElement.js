@@ -9,7 +9,7 @@ export default function OrderElement() {
           <tr>
               <td className="align-middle font-weight-bolder"><img src={image} alt="" style={{ width: "50px" }} /> Product Name</td>
               <td className='align-middle font-weight-bolder'>2016-4-3</td>
-              <td><button className="btn btn-block btn-primary font-weight-bold my-3 py-3">Move to Cart</button></td>
+        <td><button className="btn btn-block btn-dark font-weight-bold my-3 py-3 rounded">Move to Cart</button></td>
           </tr>
     
     </>

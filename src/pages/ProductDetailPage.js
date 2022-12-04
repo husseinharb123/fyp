@@ -6,8 +6,8 @@ import ReviewDescribeProduct from '../main components/ReviewDescribeProduct/Revi
 import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ProductDetailDispatch } from '../Contexts/ProductDetailContextProvider'
-import Axios from 'axios'
 import { useState } from 'react'
+import axios from 'axios'
 
 export default function ProductDetailPage() {
   const dispatch = useContext(ProductDetailDispatch);
@@ -20,13 +20,13 @@ export default function ProductDetailPage() {
     async function fetchdata() {
       setloaded(false);
       const url = `/productdetail/${id}`
-      const response = await Axios.get(url)
+      const response = await axios.get(url)
       if (response.data.responseSuccess) {
         dispatch({ type: 'fetchdata', value: response.data.productdetail })
         setloaded(true);
       }
       else {
-        navigate('*')
+        navigate('/storelogin')
       }
 
     }
@@ -40,7 +40,7 @@ export default function ProductDetailPage() {
     <>
       {loaded && <>
         <Header />
-        <div class="container-fluid pb-5">
+        <div className="container-fluid pb-5">
           <ProductDetail />
           <ReviewDescribeProduct />
         </div>

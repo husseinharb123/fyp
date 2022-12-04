@@ -3,7 +3,7 @@ import { useImmerReducer } from 'use-immer'
 import { useEffect } from 'react'
 
 
-export default function StarRating({reviews,allowclick,rating ,viewreview ,float}) {
+export default function StarRating({ reviews, allowclick, rating, viewreview, float, dispatchrating }) {
 
     const initialState = {
         s1: {
@@ -27,13 +27,14 @@ export default function StarRating({reviews,allowclick,rating ,viewreview ,float
             clickcount: 0
         },
         rating: 0,
+        ratingsubmit:0
 
     }
 
     function ourReducer(draft, action) {
         switch (action.type) {
             case 'click1':
-                console.log("gtest");
+
                 draft.s2.value = 0;
                 draft.s3.value = 0;
                 draft.s4.value = 0;
@@ -55,7 +56,7 @@ export default function StarRating({reviews,allowclick,rating ,viewreview ,float
 
                 }
 
-
+                draft.ratingsubmit++;
                 break;
             case 'click2':
                 draft.s1.value = 1;
@@ -77,6 +78,7 @@ export default function StarRating({reviews,allowclick,rating ,viewreview ,float
                     draft.s2.clickcount = 0;
                     draft.rating = 1
                 }
+                draft.ratingsubmit++;
                 break;
             case 'click3':
                 draft.s1.value = 1;
@@ -98,6 +100,7 @@ export default function StarRating({reviews,allowclick,rating ,viewreview ,float
                     draft.s3.clickcount = 0;
                     draft.rating = 2
                 }
+                draft.ratingsubmit++;
                 break;
             case 'click4':
                 draft.s1.value = 1;
@@ -119,6 +122,7 @@ export default function StarRating({reviews,allowclick,rating ,viewreview ,float
                     draft.s4.clickcount = 0;
                     draft.rating = 3
                 }
+                draft.ratingsubmit++;
                 break;
             case 'click5':
                 draft.s1.value = 1;
@@ -140,6 +144,7 @@ export default function StarRating({reviews,allowclick,rating ,viewreview ,float
                     draft.s5.clickcount = 0;
                     draft.rating = 4
                 }
+                draft.ratingsubmit++;
                 break;
 
              case 'fetchdata':
@@ -236,7 +241,14 @@ export default function StarRating({reviews,allowclick,rating ,viewreview ,float
     useEffect(() => {       
      dispatch({type:'fetchdata',value:rating})
     },[])
-    
+    useEffect(() => {
+        
+        if (state.ratingsubmit){
+            dispatchrating({type:'fetchrating',value:state.rating})
+        }
+
+    }, [state.ratingsubmit])
+
 
 
 

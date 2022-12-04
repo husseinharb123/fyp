@@ -15,6 +15,9 @@ export default function ProductDetail() {
     <>
 
       <div className="row px-xl-5 bg-secondary p-30">
+        <div className="heading-section">
+          <h2>Product Details</h2>
+        </div>
         <div className="col-lg-5 mb-15">
           <div
             id="product-carousel"
